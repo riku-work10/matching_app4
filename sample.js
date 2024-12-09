@@ -1,4 +1,3 @@
-<!-- app/views/users/index.html.erb -->
 <div class="user-index-page">
   <%= render "partial/navbar" %>
 

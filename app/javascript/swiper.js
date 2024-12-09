@@ -1,3 +1,6 @@
+import Swiper from 'swiper/bundle';
+import 'swiper/swiper-bundle.css';
+
 if(location.pathname == "/users") {
   $(function () {
     let allCards = document.querySelectorAll('.swipe--card');
