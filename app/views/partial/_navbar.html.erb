@@ -1,0 +1,13 @@
+<nav class="navbar navbar-light">
+  <%= link_to "#", class: "nav-item nav-link", data: { turbolinks: :false } do %>
+    <i class="bi bi-fire fa-lg inherit"></i>
+  <% end %>
+  <%= link_to "#", class: "nav-item nav-link" do %>
+    <i class="bi bi-chat-dots fa-lg inherit"></i>
+  <% end %>
+  <%= link_to user_path(@user), class: "nav-item nav-link" do %>
+    <span class="<%= 'active' if current_page?(user_path(@user)) %>">
+      <i class="bi bi-person fa-lg inherit"></i>
+    </span>
+  <% end %>
+</nav>
