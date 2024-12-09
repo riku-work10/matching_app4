@@ -38,6 +38,8 @@ gem "bootsnap", require: false
 
 #追加したgem
 gem 'devise'
+gem 'carrierwave', '~> 2.2'
+
 
 
 group :development, :test do
