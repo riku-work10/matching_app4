@@ -1,3 +1,5 @@
+import { getCsrfToken } from "./get_csrf_token";
+
 if (location.pathname == "/users") {
   document.addEventListener("DOMContentLoaded", function () {
     let allCards = document.querySelectorAll(".swipe--card");
@@ -53,6 +55,8 @@ if (location.pathname == "/users") {
         let keep = Math.abs(event.deltaX) < 200;
         event.target.classList.toggle("removed", !keep);
 
+        let reaction = event.deltaX > 0 ? "like" : "dislike";
+
         if (keep) {
           event.target.style.transform = "";
         } else {
@@ -65,6 +69,8 @@ if (location.pathname == "/users") {
           let xMulti = event.deltaX * 0.03;
           let yMulti = event.deltaY / 80;
           let rotate = xMulti * yMulti;
+
+          postReaction(el.id, reaction);
 
           event.target.style.transform =
             "translate(" +
@@ -80,6 +86,21 @@ if (location.pathname == "/users") {
       });
     });
     
+    function postReaction(user_id, reaction) {
+      fetch("reactions.json", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+          "X-CSRF-TOKEN": getCsrfToken(),
+        },
+        body: JSON.stringify({
+          user_id: user_id,
+          reaction: reaction,
+        }),
+      }).then((res) => console.log(`done!`));
+    }
+
     function createButtonListener(reaction) {
       let cards = document.querySelectorAll('.swipe--card:not(.removed)');
 
@@ -89,6 +110,12 @@ if (location.pathname == "/users") {
 
       let card = cards[0];
       card.classList.add('removed');
+
+      let user_id = card.id;
+
+      postReaction(user_id, reaction);
+      card.classList.add("removed");
+
 
       if (reaction == "like") {
         card.style.transform = 'translate(' + moveOutWidth + 'px, -100px) rotate(-30deg)';
