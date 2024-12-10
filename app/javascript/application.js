@@ -1,8 +1,7 @@
 // Entry point for the build script in your package.json
-import "@hotwired/turbo-rails"
-import "./controllers"
-import * as bootstrap from "bootstrap"
-import "./profile_image_upload"
-import 'hammerjs'
-import Swiper from 'swiper/bundle'
-window.Swiper = Swiper
+import "@hotwired/turbo-rails";
+import "./controllers";
+import "bootstrap";
+import "./profile_image_upload";
+import "hammerjs";
+import "./swipe";
