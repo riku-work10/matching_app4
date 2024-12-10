@@ -1,4 +1,4 @@
-// app/assets/stylesheets/users/index.scss
+
 .user-index-page {
   max-width: 480px;
   margin: auto 0;
@@ -38,7 +38,6 @@
   flex-direction: column;
   position: relative;
   transition: opacity 0.1s ease-in-out;
-
   &--status {
     position: absolute;
     top: 50%;
@@ -57,21 +56,23 @@
       width: 100px;
     }
   }
-
-  // swiper-containerのスタイル
-  .swiper-container {
-    width: 100%;
-    height: 100%;
-  }
-
-  // swiper-wrapperのスタイル
-  .swiper-wrapper {
+  &--cards {
+    flex-grow: 1;
+    text-align: center;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+    .no-user {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &.is-active {
+        display: flex;
+      }
+    }
   }
-
-  // swiper-slideのスタイル
-  .swiper-slide {
+  &--card {
     display: inline-block;
     width: 90vw;
     max-width: 340px;
@@ -95,7 +96,6 @@
       pointer-events: none;	
     }
   }
-
   &--buttons {
     flex: 0 0 100px;
     text-align: center;
@@ -113,17 +113,14 @@
       }
     }
   }
-
-  &_like .bi-heart-fill {
+  &_like .fa-heart {
     opacity: 0.7;
     transform: scale(1);
   }
-
-  &_dislike .bi-x-lg {
+  &_dislike .fa-times {
     opacity: 0.7;
     transform: scale(1);
   }
-
   .moving .swipe--card {
     transition: none;
     cursor: -webkit-grabbing;
@@ -132,11 +129,11 @@
   }
 }
 
-.bi-heart-fill {
+.fa-heart {
   color: #FFACE4;
 }
 
-.bi-x-lg {
+.fa-times {
   color: #CDD6DD;
 }
 
@@ -153,14 +150,3 @@
     height: 640px;
   }
 }
-
-.no-user {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  &.is-active {
-    display: flex;
-  }
-}
-
